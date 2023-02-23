@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutteradvanced/presentation/themes_manager.dart';
 
 class MyApp extends StatelessWidget {
   // const MyApp({super.key});
@@ -14,6 +15,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return MaterialApp(
+      theme: getApplicationTheme(),
+    );
   }
 }
