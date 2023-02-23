@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutteradvanced/presentation/colors_manager.dart';
-import 'package:flutteradvanced/presentation/fonts_manager.dart';
-import 'package:flutteradvanced/presentation/styles_manager.dart';
-import 'package:flutteradvanced/presentation/values_manager.dart';
+
+import 'fonts_manager.dart';
+import 'styles_manager.dart';
+import 'values_manager.dart';
 
 ThemeData getApplicationTheme() {
   return ThemeData(
@@ -73,5 +74,76 @@ ThemeData getApplicationTheme() {
         )),
 
     // input decoration theme
+
+    inputDecorationTheme: InputDecorationTheme(
+      contentPadding: const EdgeInsets.all(
+        AppPadding.p8,
+      ),
+      hintStyle: getRegularTextStyle(
+        color: ColorsManager.grey1,
+      ),
+      labelStyle: getMediumTextStyle(
+        color: ColorsManager.darkGrey,
+      ),
+      errorStyle: getRegularTextStyle(
+        color: ColorsManager.error,
+      ),
+
+      // enabled border
+
+      enabledBorder: OutlineInputBorder(
+        borderSide: BorderSide(
+          color: ColorsManager.grey,
+          width: AppSize.s1_5,
+        ),
+        borderRadius: const BorderRadius.all(
+          Radius.circular(
+            AppSize.s8,
+          ),
+        ),
+      ),
+
+      // focused border
+
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(
+          color: ColorsManager.primary,
+          width: AppSize.s1_5,
+        ),
+        borderRadius: const BorderRadius.all(
+          Radius.circular(
+            AppSize.s8,
+          ),
+        ),
+      ),
+
+      // error border
+
+      errorBorder: OutlineInputBorder(
+        borderSide: BorderSide(
+          color: ColorsManager.error,
+          width: AppSize.s1_5,
+        ),
+        borderRadius: const BorderRadius.all(
+          Radius.circular(
+            AppSize.s8,
+          ),
+        ),
+      ),
+
+      // focused-error border
+
+      focusedErrorBorder: OutlineInputBorder(
+        borderSide: BorderSide(
+          color: ColorsManager.primary,
+          width: AppSize.s1_5,
+        ),
+        borderRadius: const BorderRadius.all(
+          Radius.circular(
+            AppSize.s8,
+          ),
+        ),
+      ),
+    ),
   );
 }

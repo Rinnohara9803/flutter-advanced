@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutteradvanced/presentation/themes_manager.dart';
+
+import '../presentation/resources/themes_manager.dart';
 
 class MyApp extends StatelessWidget {
   // const MyApp({super.key});
