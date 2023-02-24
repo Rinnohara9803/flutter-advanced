@@ -1,4 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutteradvanced/presentation/resources/assets_manager.dart';
+
+import '../resources/colors_manager.dart';
+import '../resources/routes_manager.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
@@ -8,8 +14,42 @@ class SplashView extends StatefulWidget {
 }
 
 class _SplashViewState extends State<SplashView> {
+  Timer? _timer;
+
+  _goNextPage() {
+    // Navigator.pushNamed(context, Routes.onBoardingRoute);
+  }
+
+  _startTimer() {
+    _timer = Timer(
+      const Duration(
+        seconds: 2,
+      ),
+      _goNextPage(),
+    );
+  }
+
+  @override
+  void initState() {
+    _startTimer();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _timer!.cancel();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      backgroundColor: ColorsManager.primary,
+      body: const Center(
+        child: Image(
+          image: AssetImage(ImageAssetsManager.splashLogo),
+        ),
+      ),
+    );
   }
 }
