@@ -10,6 +10,10 @@ class OnBoardingView extends StatefulWidget {
 class OnBoardingViewState extends State<OnBoardingView> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return const Scaffold(
+      body: Center(
+        child: Text('Welcome to onboarding screen'),
+      ),
+    );
   }
 }
