@@ -8,18 +8,18 @@ import 'values_manager.dart';
 ThemeData getApplicationTheme() {
   return ThemeData(
     // application theme
-    primaryColor: ColorsManager.primary,
-    primaryColorLight: ColorsManager.primaryOpacity70,
-    primaryColorDark: ColorsManager.darkPrimary,
-    accentColor: ColorsManager.grey,
-    disabledColor: ColorsManager.grey1,
-    splashColor: ColorsManager.primaryOpacity70,
+    primaryColor: AppColors.primary,
+    primaryColorLight: AppColors.primaryOpacity70,
+    primaryColorDark: AppColors.darkPrimary,
+    accentColor: AppColors.grey,
+    disabledColor: AppColors.grey1,
+    splashColor: AppColors.primaryOpacity70,
 
     // card view theme
 
     cardTheme: CardTheme(
-      color: ColorsManager.white,
-      shadowColor: ColorsManager.grey,
+      color: AppColors.white,
+      shadowColor: AppColors.grey,
       elevation: AppSize.s4,
     ),
 
@@ -27,11 +27,11 @@ ThemeData getApplicationTheme() {
 
     appBarTheme: AppBarTheme(
       centerTitle: true,
-      color: ColorsManager.primary,
+      color: AppColors.primary,
       elevation: AppSize.s4,
-      shadowColor: ColorsManager.primaryOpacity70,
+      shadowColor: AppColors.primaryOpacity70,
       titleTextStyle: getRegularTextStyle(
-        color: ColorsManager.white,
+        color: AppColors.white,
         fontSize: FontSize.s16,
       ),
     ),
@@ -40,9 +40,9 @@ ThemeData getApplicationTheme() {
 
     buttonTheme: ButtonThemeData(
       shape: const StadiumBorder(),
-      disabledColor: ColorsManager.grey1,
-      buttonColor: ColorsManager.primary,
-      splashColor: ColorsManager.primaryOpacity70,
+      disabledColor: AppColors.grey1,
+      buttonColor: AppColors.primary,
+      splashColor: AppColors.primaryOpacity70,
     ),
 
     // elevated button theme
@@ -50,14 +50,14 @@ ThemeData getApplicationTheme() {
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         textStyle: getRegularTextStyle(
-          color: ColorsManager.white,
+          color: AppColors.white,
         ),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(
             AppSize.s12,
           ),
         ),
-        backgroundColor: ColorsManager.primary,
+        backgroundColor: AppColors.primary,
       ),
     ),
 
@@ -65,12 +65,12 @@ ThemeData getApplicationTheme() {
 
     textTheme: TextTheme(
         displayLarge: getSemiBoldTextStyle(
-            color: ColorsManager.darkGrey, fontSize: FontSize.s16),
+            color: AppColors.darkGrey, fontSize: FontSize.s16),
         displayMedium: getMediumTextStyle(
-            color: ColorsManager.lightGrey, fontSize: FontSize.s14),
-        displaySmall: getRegularTextStyle(color: ColorsManager.grey1),
+            color: AppColors.lightGrey, fontSize: FontSize.s14),
+        displaySmall: getRegularTextStyle(color: AppColors.grey1),
         bodyLarge: getRegularTextStyle(
-          color: ColorsManager.grey,
+          color: AppColors.grey,
         )),
 
     // input decoration theme
@@ -80,20 +80,20 @@ ThemeData getApplicationTheme() {
         AppPadding.p8,
       ),
       hintStyle: getRegularTextStyle(
-        color: ColorsManager.grey1,
+        color: AppColors.grey1,
       ),
       labelStyle: getMediumTextStyle(
-        color: ColorsManager.darkGrey,
+        color: AppColors.darkGrey,
       ),
       errorStyle: getRegularTextStyle(
-        color: ColorsManager.error,
+        color: AppColors.error,
       ),
 
       // enabled border
 
       enabledBorder: OutlineInputBorder(
         borderSide: BorderSide(
-          color: ColorsManager.grey,
+          color: AppColors.grey,
           width: AppSize.s1_5,
         ),
         borderRadius: const BorderRadius.all(
@@ -107,7 +107,7 @@ ThemeData getApplicationTheme() {
 
       focusedBorder: OutlineInputBorder(
         borderSide: BorderSide(
-          color: ColorsManager.primary,
+          color: AppColors.primary,
           width: AppSize.s1_5,
         ),
         borderRadius: const BorderRadius.all(
@@ -121,7 +121,7 @@ ThemeData getApplicationTheme() {
 
       errorBorder: OutlineInputBorder(
         borderSide: BorderSide(
-          color: ColorsManager.error,
+          color: AppColors.error,
           width: AppSize.s1_5,
         ),
         borderRadius: const BorderRadius.all(
@@ -135,7 +135,7 @@ ThemeData getApplicationTheme() {
 
       focusedErrorBorder: OutlineInputBorder(
         borderSide: BorderSide(
-          color: ColorsManager.primary,
+          color: AppColors.primary,
           width: AppSize.s1_5,
         ),
         borderRadius: const BorderRadius.all(
