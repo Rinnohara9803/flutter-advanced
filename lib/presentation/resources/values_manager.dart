@@ -36,5 +36,5 @@ class AppSize {
 }
 
 class AppDuration {
-  static const Duration duration300 = Duration(microseconds: 300);
+  static const Duration duration300 = Duration(milliseconds: 300);
 }

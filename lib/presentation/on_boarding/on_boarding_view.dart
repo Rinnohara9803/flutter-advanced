@@ -20,7 +20,7 @@ class OnBoardingViewState extends State<OnBoardingView> {
   int _currentIndex = 0;
 
   void _goToNextPage() {
-    if (_currentIndex == _sliderList.length) {
+    if (_currentIndex == _sliderList.length - 1) {
       return;
     }
     _currentIndex++;
