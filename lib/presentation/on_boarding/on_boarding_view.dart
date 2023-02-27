@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutteradvanced/presentation/on_boarding/on_boarding_viewmodel.dart';
 import 'package:flutteradvanced/presentation/resources/assets_manager.dart';
 import 'package:flutteradvanced/presentation/resources/colors_manager.dart';
 import 'package:flutteradvanced/presentation/resources/strings_manager.dart';
 import 'package:flutteradvanced/presentation/resources/values_manager.dart';
+
+import '../../domain/slider_object.dart';
 
 class OnBoardingView extends StatefulWidget {
   const OnBoardingView({super.key});
@@ -14,60 +17,36 @@ class OnBoardingView extends StatefulWidget {
 }
 
 class OnBoardingViewState extends State<OnBoardingView> {
-  late final List<SliderObject> _sliderList = _getSliderList();
-
+  OnBoardingViewModel _onBoardingViewModel = OnBoardingViewModel();
   final PageController _pageController = PageController(initialPage: 0);
-  int _currentIndex = 0;
 
-  void _goToNextPage() {
-    if (_currentIndex == _sliderList.length - 1) {
-      return;
-    }
-    _currentIndex++;
-    _pageController.animateToPage(_currentIndex,
-        duration: AppDuration.duration300, curve: Curves.bounceInOut);
+  @override
+  void initState() {
+    _onBoardingViewModel.start();
+    super.initState();
   }
-
-  void _goToPreviousPage() {
-    if (_currentIndex == 0) {
-      return;
-    }
-    _currentIndex--;
-    _pageController.animateToPage(_currentIndex,
-        duration: AppDuration.duration300, curve: Curves.bounceInOut);
-  }
-
-  List<SliderObject> _getSliderList() => [
-        SliderObject(
-          AppString.onBoardingTitle1,
-          AppString.onBoardingSubTitle1,
-          ImageAssetsManager.onBoardingLogo1,
-        ),
-        SliderObject(
-          AppString.onBoardingTitle2,
-          AppString.onBoardingSubTitle2,
-          ImageAssetsManager.onBoardingLogo2,
-        ),
-        SliderObject(
-          AppString.onBoardingTitle3,
-          AppString.onBoardingSubTitle3,
-          ImageAssetsManager.onBoardingLogo3,
-        ),
-        SliderObject(
-          AppString.onBoardingTitle4,
-          AppString.onBoardingSubTitle4,
-          ImageAssetsManager.onBoardingLogo4,
-        ),
-      ];
 
   @override
   void dispose() {
+    _onBoardingViewModel.dispose();
     _pageController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    return StreamBuilder(
+      stream: _onBoardingViewModel.outputSliderViewObject,
+      builder: (context, snapshot) {
+        return _getContentWidget(snapshot.data);
+      },
+    );
+  }
+
+  Widget _getContentWidget(SliderViewObject? sliderViewObject) {
+    if (sliderViewObject == null) {
+      return Container();
+    }
     return Scaffold(
       backgroundColor: AppColors.white,
       appBar: AppBar(
@@ -81,14 +60,12 @@ class OnBoardingViewState extends State<OnBoardingView> {
       ),
       body: PageView.builder(
         controller: _pageController,
-        itemCount: _sliderList.length,
+        itemCount: sliderViewObject.numOfSliders,
         onPageChanged: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
+          _onBoardingViewModel.onPageChanged(index);
         },
         itemBuilder: (context, index) {
-          return OnBoardingWidget(sliderObject: _sliderList[index]);
+          return OnBoardingWidget(sliderObject: sliderViewObject.sliderObject);
         },
       ),
       bottomSheet: Container(
@@ -107,21 +84,21 @@ class OnBoardingViewState extends State<OnBoardingView> {
                 ),
               ),
             ),
-            getBottomSheetWidget(),
+            getBottomSheetWidget(sliderViewObject),
           ],
         ),
       ),
     );
   }
 
-  Widget getProperCircle(int index) {
-    if (index == _currentIndex) {
+  Widget getProperCircle(int index, int currentIndex) {
+    if (index == currentIndex) {
       return SvgPicture.asset(ImageAssetsManager.hollowCircleIcon);
     }
     return SvgPicture.asset(ImageAssetsManager.solidCircleIcon);
   }
 
-  Widget getBottomSheetWidget() {
+  Widget getBottomSheetWidget(SliderViewObject sliderViewObject) {
     return Container(
       color: AppColors.primary,
       child: Row(
@@ -132,7 +109,11 @@ class OnBoardingViewState extends State<OnBoardingView> {
             padding: const EdgeInsets.all(AppPadding.p14),
             child: InkWell(
               onTap: () {
-                _goToPreviousPage();
+                // go to previous slide
+                _pageController.animateToPage(
+                    _onBoardingViewModel.goToPreviousPage(),
+                    duration: AppDuration.duration300,
+                    curve: Curves.bounceInOut);
               },
               child: SizedBox(
                 height: AppSize.s20,
@@ -147,10 +128,10 @@ class OnBoardingViewState extends State<OnBoardingView> {
           // indicator
 
           Row(children: [
-            for (int i = 0; i < _sliderList.length; i++)
+            for (int i = 0; i < sliderViewObject.numOfSliders; i++)
               Padding(
                 padding: const EdgeInsets.all(AppPadding.p8),
-                child: getProperCircle(i),
+                child: getProperCircle(i, sliderViewObject.currentIndex),
               ),
           ]),
 
@@ -159,7 +140,11 @@ class OnBoardingViewState extends State<OnBoardingView> {
             padding: const EdgeInsets.all(AppPadding.p14),
             child: InkWell(
               onTap: () {
-                _goToNextPage();
+                // go to previous slide
+                _pageController.animateToPage(
+                    _onBoardingViewModel.goToNextPage(),
+                    duration: AppDuration.duration300,
+                    curve: Curves.bounceInOut);
               },
               child: SizedBox(
                 height: AppSize.s20,
@@ -217,12 +202,4 @@ class OnBoardingWidget extends StatelessWidget {
       ],
     );
   }
-}
-
-class SliderObject {
-  String title;
-  String subTitle;
-  String image;
-
-  SliderObject(this.title, this.subTitle, this.image);
 }
