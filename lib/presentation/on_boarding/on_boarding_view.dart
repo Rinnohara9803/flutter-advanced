@@ -7,7 +7,7 @@ import 'package:flutteradvanced/presentation/resources/colors_manager.dart';
 import 'package:flutteradvanced/presentation/resources/strings_manager.dart';
 import 'package:flutteradvanced/presentation/resources/values_manager.dart';
 
-import '../../domain/slider_object.dart';
+import '../../domain/models/slider_object.dart';
 
 class OnBoardingView extends StatefulWidget {
   const OnBoardingView({super.key});

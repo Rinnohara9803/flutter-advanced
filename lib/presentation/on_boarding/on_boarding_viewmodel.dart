@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:flutteradvanced/domain/slider_object.dart';
+import 'package:flutteradvanced/domain/models/slider_object.dart';
 import 'package:flutteradvanced/presentation/base/base_viewmodel.dart';
 
 import '../resources/assets_manager.dart';
