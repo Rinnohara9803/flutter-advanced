@@ -14,5 +14,9 @@ abstract class AppService {
   factory AppService(Dio dio, {String baseUrl}) = _AppService;
 
   @POST(ApiEndPoints.login)
-  Future<AuthenticationResponse> login();
+  Future<AuthenticationResponse> login(
+      @Field('email') String email,
+      @Field('password') String password,
+      @Field('imei') String imei,
+      @Field('deviceType') String deviceType);
 }

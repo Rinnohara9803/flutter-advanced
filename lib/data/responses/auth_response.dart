@@ -19,7 +19,7 @@ class AuthenticationResponse {
   });
 
   int status;
-  String message;
+  String? message;
   Customer customer;
   Contacts contacts;
 
