@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutteradvanced/domain/repositories/login_repository.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -10,6 +11,11 @@ class LoginView extends StatefulWidget {
 class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return ElevatedButton(
+      onPressed: () {},
+      child: Text(
+        'Click Me',
+      ),
+    );
   }
 }

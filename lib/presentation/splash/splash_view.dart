@@ -17,7 +17,7 @@ class _SplashViewState extends State<SplashView> {
   Timer? _timer;
 
   void _goNextPage() {
-    Navigator.pushReplacementNamed(context, Routes.onBoardingRoute);
+    Navigator.pushReplacementNamed(context, Routes.loginRoute);
   }
 
   void _startTimer() {
