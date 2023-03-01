@@ -25,7 +25,6 @@ class DioFactory {
       authorization: Constants.token,
       defaultLanugage: appLanguage, // get language from app preferences
     };
-
     dio.options = BaseOptions(
       baseUrl: Constants.baseUrl,
       receiveTimeout: timeOutDuration,
