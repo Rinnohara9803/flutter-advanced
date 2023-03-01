@@ -11,7 +11,8 @@ class LoginViewModel extends BaseViewModel
 
   @override
   void dispose() {
-    // TODO: implement dispose
+    _usernameStreamController.close();
+    _passwordStreamController.close();
   }
 
   @override
@@ -26,12 +27,12 @@ class LoginViewModel extends BaseViewModel
 
   @override
   void setPassword(String password) {
-    // TODO: implement setPassword
+    inputPassword.add(password);
   }
 
   @override
   void setUserName(String userName) {
-    // TODO: implement setUserName
+    inputUserName.add(userName);
   }
 
   @override
@@ -44,11 +45,23 @@ class LoginViewModel extends BaseViewModel
 
   @override
   // TODO: implement isPasswordValid
-  Stream<bool> get isPasswordValid => throw UnimplementedError();
+  Stream<bool> get isPasswordValid => _passwordStreamController.stream
+      .map((password) => _isPasswordValid(password));
 
   @override
   // TODO: implement isUsernameValid
-  Stream<bool> get isUsernameValid => throw UnimplementedError();
+  Stream<bool> get isUsernameValid => _usernameStreamController.stream
+      .map((userName) => _isUsernameValid(userName));
+
+  // private functions
+
+  bool _isPasswordValid(String password) {
+    return password.isEmpty;
+  }
+
+  bool _isUsernameValid(String userName) {
+    return userName.isEmpty;
+  }
 }
 
 // inputs from view to view-model
