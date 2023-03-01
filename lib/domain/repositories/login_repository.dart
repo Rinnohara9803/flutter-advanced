@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutteradvanced/data/datasource/remote_data_source.dart';
-import 'package:flutteradvanced/data/network/error_hander.dart';
+import 'package:flutteradvanced/data/network/error_handler.dart';
 import 'package:flutteradvanced/data/network/failure.dart';
 import 'package:flutteradvanced/data/network/network_info.dart';
 import 'package:flutteradvanced/data/requests/login_request.dart';
