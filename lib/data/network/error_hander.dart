@@ -121,6 +121,7 @@ class ErrorHandlerImpl implements Exception {
       // handle dio-error (API response error)
       failure = _handleError(error);
     } else {
+      // default error handler
       failure = DataSource.defaultCode.getFailure();
     }
   }
@@ -148,16 +149,22 @@ class ErrorHandlerImpl implements Exception {
             return DataSource.notFound.getFailure();
           case ResponseCode.internalServerError:
             return DataSource.internalServerError.getFailure();
+          default:
+            return DataSource.defaultCode.getFailure();
         }
-        break;
       case DioErrorType.cancel:
         return DataSource.cancel.getFailure();
       case DioErrorType.connectionError:
         return DataSource.connectTimeout.getFailure();
       case DioErrorType.unknown:
-        return DataSource.defaultCode.getFailure();
+
       default:
         return DataSource.defaultCode.getFailure();
     }
   }
+}
+
+class ApiInternalStatus {
+  static const int success = 1;
+  static const int failure = -1;
 }

@@ -18,7 +18,7 @@ class AuthenticationResponse {
     required this.contacts,
   });
 
-  int status;
+  int? status;
   String? message;
   Customer customer;
   Contacts contacts;
