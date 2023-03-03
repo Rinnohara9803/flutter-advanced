@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutteradvanced/presentation/base/base_viewmodel.dart';
+import 'package:flutteradvanced/presentation/common/freezed_data_classses.dart';
 
 class LoginViewModel extends BaseViewModel
     with LoginViewModelInputs, LoginViewModelOutputs {
@@ -8,6 +9,8 @@ class LoginViewModel extends BaseViewModel
       StreamController<String>.broadcast();
   final StreamController _passwordStreamController =
       StreamController<String>.broadcast();
+
+  LoginObject loginObject = LoginObject('', '');
 
   @override
   void dispose() {
@@ -28,11 +31,13 @@ class LoginViewModel extends BaseViewModel
   @override
   void setPassword(String password) {
     inputPassword.add(password);
+    loginObject.copyWith(password: password);
   }
 
   @override
   void setUserName(String userName) {
     inputUserName.add(userName);
+    loginObject.copyWith(username: userName);
   }
 
   @override
@@ -44,12 +49,10 @@ class LoginViewModel extends BaseViewModel
   Sink get inputPassword => _passwordStreamController.sink;
 
   @override
-  // TODO: implement isPasswordValid
   Stream<bool> get isPasswordValid => _passwordStreamController.stream
       .map((password) => _isPasswordValid(password));
 
   @override
-  // TODO: implement isUsernameValid
   Stream<bool> get isUsernameValid => _usernameStreamController.stream
       .map((userName) => _isUsernameValid(userName));
 
